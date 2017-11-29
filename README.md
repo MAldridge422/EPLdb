@@ -9,6 +9,8 @@ Uses the SB Admin template by [Start Bootstrap](https://startbootstrap.com/templ
 ## Development
 You can run the site with ```python manage.py runserver``` ([manage.py](EPLdb/manage.py))
 
+Use ```python manage.py dbshell``` to interact with the database
+
 Make sure you create a secret.py file in [EPLdb/](EPLdb/) that defines SECRET_KEY for [settings.py](EPLdb/EPLdb/settings.py) 
 
 In [settings.py](EPLdb/EPLdb/settings.py), set DEBUG = TRUE

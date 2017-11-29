@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>{% block title %}EPLdb{% endblock %}</title>
+  <!-- Bootstrap core CSS-->
+  <link href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="{% static "vendor/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
+  <!-- Page level plugin CSS-->
+  <link href="{% static "vendor/datatables/dataTables.bootstrap4.css" %}" rel="stylesheet">
+  <!-- Custom styles for this template-->
+  <link href="{% static "css/sb-admin.css" %}" rel="stylesheet">
+  {% block formatting %}
+  {% endblock %}
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+  {% include "nav.html" %}
+  <div class="content-wrapper">
+    {% block content %}
+    {% endblock %}
+    <footer class="sticky-footer">
+      <div class="container">
+        <div class="text-center">
+          <small>Copyright © Your Website 2017</small>
+        </div>
+      </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Bootstrap core JavaScript-->
+    <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
+    <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="{% static "vendor/jquery-easing/jquery.easing.min.js" %}"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="{% static "vendor/chart.js/Chart.min.js" %}"></script>
+    <script src="{% static "vendor/datatables/jquery.dataTables.js" %}"></script>
+    <script src="{% static "vendor/datatables/dataTables.bootstrap4.js" %}"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="{% static "js/sb-admin.min.js" %}"></script>
+    <!-- Custom scripts for this page-->
+    <script src="{% static "js/sb-admin-datatables.min.js" %}"></script>
+    <script src="{% static "js/sb-admin-charts.min.js" %}"></script>
+  </div>
+</body>
+</html>

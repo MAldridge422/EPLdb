@@ -69,16 +69,27 @@ def index(request):
     return render(request, 'index.html', {'table': table})
 
 
-def teams(request, team="Manchester United"):
+def teams(request, team="Man Utd"):
     with connection.cursor() as cursor:
-        cursor.execute('''SELECT * FROM TEAMS''')
+        cursor.execute('''SELECT * FROM Teams''')
         rows = cursor.fetchall()
         all_teams = [r[1] for r in rows]
         table = None
         if team not in all_teams:
             return render(request, 'teams.html', {'table':table, 'team':team})
-        # need to finish the function here
-    return render(request, 'teams.html', {'team':team})
+        cursor.execute('''
+            SELECT name, position
+            FROM Teams INNER JOIN Players
+            ON Teams.team_id=Players.team_id
+            WHERE Teams.full_name="'''+team+'''"''')
+        rows = cursor.fetchall()
+        table = [r for r in rows]
+        cursor.execute('''
+            SELECT full_name, abbrev, Managers.name as manager, Grounds.name as ground, city FROM Teams LEFT JOIN Managers ON Teams.team_id=Managers.team_id INNER JOIN Grounds ON Grounds.grounds_id=Teams.team_id AND Grounds.grounds_id=Managers.team_id WHERE Teams.full_name="'''+team+'''"''')
+        rows = cursor.fetchall()
+        team_obj = [r for r in rows]
+        print(team_obj)
+    return render(request, 'teams.html', {'team_obj':team_obj, 'team':team, 'table':table})
 
 
 def positions(request, pos="Defender"):

@@ -12,37 +12,44 @@
         <li class="nav-item"><a class="nav-link" href="{% url "teams" "Brighton" %}">Brighton</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url "teams" "Burnley" %}">Burnley</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url "teams" "Chelsea" %}">Chelsea</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url "teams" "CrystalPalace" %}">Crystal Palace</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "teams" "Crystal Palace" %}">Crystal Palace</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url "teams" "Everton" %}">Everton</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url "teams" "Huddersfield" %}">Huddersfield</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url "teams" "Leicester" %}">Leicester</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url "teams" "Liverpool" %}">Liverpool</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url "teams" "ManCity" %}">Man City</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url "teams" "ManUnited" %}">Man United</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "teams" "Man City" %}">Man City</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "teams" "Man Utd" %}">Man United</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url "teams" "Newcastle" %}">Newcastle</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url "teams" "Southampton" %}">Southampton</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url "teams" "Stoke" %}">Stoke</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url "teams" "Swansea" %}">Swansea</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url "teams" "Tottenham" %}">Tottenham</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url "teams" "Watford" %}">Waford</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url "teams" "WestBrom" %}">West Brom</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url "teams" "WestHam" %}">West Ham</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "teams" "Spurs" %}">Tottenham Hotspur</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "teams" "Watford" %}">Watford</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "teams" "West Brom" %}">West Brom</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "teams" "West Ham" %}">West Ham</a></li>
       </ul>
-      {% if table %}
+      <h1>{{ team_obj.0.0 }}({{ team_obj.0.1 }})</h1>
+      <strong>Manager:</strong> {{ team_obj.0.2 }}<br />
+      <strong data-toggle="tooltip" style="text-decoration: underline" title="i.e. a stadium">Ground:</strong> {{ team_obj.0.3 }}<br />
+      <strong>City:</strong> {{ team_obj.0.4 }}<br />
+
+    {% if team %}
       <div class="card" style="margin: 30px;">
         <div class="card-header">
-          <i class="fa fa-table"></i> {{ pos }}s </div>
+          <i class="fa fa-table"></i> Players </div>
         <div class="card-body">
           <div>
-            <table class="table table-bordered" id="dataTablePositions" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTablePlayers" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>Saves</th>
+                  <th>Player</th>
+                  <th>Position</th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
-                  <th>Saves</th>
+                  <th>Player</th>
+                  <th>Position</th>
                 </tr>
               </tfoot>
               <tbody>
@@ -59,7 +66,7 @@
         </div>
       </div>
       {% else %}
-      <h2>That position does not exist</h2>
+      <h2>That team does not exist.</h2>
       {% endif %}
     </div>
     {% endblock %}

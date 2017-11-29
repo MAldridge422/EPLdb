@@ -43,6 +43,18 @@
     <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
     <!-- Core plugin JavaScript-->
     <script src="{% static "vendor/jquery-easing/jquery.easing.min.js" %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#dataTableIndex').DataTable( {
+                "paging": false,
+                "ordering": false,
+                "searching": false
+            });
+            $('#dataTablePositions').DataTable( {
+                "pageLength": 25
+            });
+        });
+    </script>
     <!-- Page level plugin JavaScript-->
     <script src="{% static "vendor/chart.js/Chart.min.js" %}"></script>
     <script src="{% static "vendor/datatables/jquery.dataTables.js" %}"></script>

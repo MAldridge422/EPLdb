@@ -71,8 +71,26 @@ def index(request):
 def teams(request):
     return render(request, 'teams.html',)
 
-def positions(request):
-    return render(request, 'positions.html',)
+def positions(request, pos="Defender"):
+    positions = ["GoalKeeper", "Defender", "Midfielder", "Forward"]
+    table = None
+    if pos not in positions:
+        return render(request, 'positions.html', {'table': table})
+    with connection.cursor() as cursor:
+        # league table
+        cursor.execute('''
+            DROP VIEW IF EXISTS '''+pos
+        )
+        cursor.execute('''
+            CREATE VIEW ''' + pos + ''' AS
+            SELECT *
+            FROM Players
+            WHERE position="''' + pos + '''"
+        ''')
+        cursor.execute('''SELECT name, full_name, minutes_played, assists, saves FROM '''+pos+''' NATURAL JOIN Teams''')
+        rows = cursor.fetchall()
+        table = [r for r in rows]
+    return render(request, 'positions.html', {'table': table, 'pos':pos})
 
 def bookings(request):
     return render(request, 'bookings.html',)

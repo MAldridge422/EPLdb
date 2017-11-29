@@ -2,4 +2,5 @@
 Made by Matt, Tarun, Michael, and Tim
 
 Made in [Django](https://www.djangoproject.com/)
+
 Uses the SB Admin template by [Start Bootstrap](https://startbootstrap.com/template-overviews/sb-admin/)

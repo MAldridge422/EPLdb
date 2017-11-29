@@ -10,14 +10,14 @@
           <i class="fa fa-table"></i> League Standings </div>
         <div class="card-body">
           <div>
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTableCustom" width="100%" cellspacing="0">
               <thead>
                 <tr>
                   <th>Team</th>
                   <th>Played</th>
                   <th>Wins</th>
-                  <th>Losses</th>
                   <th>Draws</th>
+                  <th>Losses</th>
                   <th>Goals For</th>
                   <th>Goals Against</th>
                   <th>Goal Differential</th>
@@ -29,8 +29,8 @@
                   <th>Team</th>
                   <th>Played</th>
                   <th>Wins</th>
-                  <th>Losses</th>
                   <th>Draws</th>
+                  <th>Losses</th>
                   <th>Goals For</th>
                   <th>Goals Against</th>
                   <th>Goal Differential</th>
@@ -38,165 +38,24 @@
                 </tr>
               </tfoot>
               <tbody>
+              {% for r in table %}
                 <tr>
-                  <td>Manchester City</td>
-                  <td>4</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>3</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>1</td>
+                {% for d in r %}
+                  <td>{{d}}</td>
+                {% endfor %}
                 </tr>
-                <tr>
-                  <td>Manchester United</td>
-                  <td>4</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>3</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>Chelsea</td>
-                  <td>4</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>3</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>Arsenal</td>
-                  <td>4</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>3</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>Tottenham</td>
-                  <td>4</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>3</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>Liverpool</td>
-                  <td>4</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>3</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>Burnley FC</td>
-                  <td>4</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>3</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>Leicester City</td>
-                  <td>4</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>3</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>Brighton</td>
-                  <td>4</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>3</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>Southampton</td>
-                  <td>4</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>3</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>Newcastle</td>
-                  <td>4</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>3</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>Huddersfield</td>
-                  <td>4</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>3</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>Bournemouth</td>
-                  <td>4</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>3</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>Relegation Fodder</td>
-                  <td>4</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>3</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>1</td>
-                </tr>
+              {% endfor %}
               </tbody>
             </table>
           </div>
         </div>
-        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
       </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#dataTableCustom').DataTable(
+                paging: false
+            );
+        });
+    </script>
     {% endblock %}

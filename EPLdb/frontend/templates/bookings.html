@@ -1,10 +1,52 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% block title %}EPLdb - Bookings{% endblock %}
+{% block title %}EPLdb - Positions{% endblock %}
   <div class="content-wrapper">
     {% block content %}
     <div class="container-fluid">
-    bookings
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url "bookings" "yellow" %}">Yellow Cards</a>
+        </li>
+          <a class="nav-link" href="{% url "bookings" "red" %}">Red Cards</a>
+        </li>
+      </ul>
+      {% if table %}
+      <div class="card" style="margin: 30px;">
+        <div class="card-header">
+          <i class="fa fa-table"></i> {{ col }} Cards </div>
+        <div class="card-body">
+          <div>
+            <table class="table table-bordered" id="dataTablePositions" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Player</th>
+                  <th># of cards</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>Player</th>
+                  <th># of cards</th>
+                </tr>
+              </tfoot>
+              <tbody>
+              {% for r in table %}
+                <tr>
+                {% for d in r %}
+                  <td>{{d}}</td>
+                {% endfor %}
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <h2>That position does not exist</h2>
+      {% endif %}
     </div>
     {% endblock %}

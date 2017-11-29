@@ -68,8 +68,10 @@ def index(request):
         table = [r for r in rows]
     return render(request, 'index.html', {'table': table})
 
+
 def teams(request):
     return render(request, 'teams.html',)
+
 
 def positions(request, pos="Defender"):
     positions = ["GoalKeeper", "Defender", "Midfielder", "Forward"]
@@ -77,7 +79,6 @@ def positions(request, pos="Defender"):
     if pos not in positions:
         return render(request, 'positions.html', {'table': table})
     with connection.cursor() as cursor:
-        # league table
         cursor.execute('''
             DROP VIEW IF EXISTS '''+pos
         )
@@ -92,11 +93,43 @@ def positions(request, pos="Defender"):
         table = [r for r in rows]
     return render(request, 'positions.html', {'table': table, 'pos':pos})
 
-def bookings(request):
-    return render(request, 'bookings.html',)
+
+def bookings(request, col='yellow'):
+    if col=='yellow':
+        col = 0
+    else:
+        col = 1
+    with connection.cursor() as cursor:
+        cursor.execute('''
+        SELECT name, count(name)
+        FROM Cards
+        INNER JOIN Players
+        ON Cards.player_id=Players.player_id
+        WHERE is_red='''+str(col)+'''
+        GROUP BY name''') 
+        rows = cursor.fetchall()
+        table = [r for r in rows]
+    if col==0:
+        col='Yellow'
+    else:
+        col='Red'
+    return render(request, 'bookings.html', {'table':table, 'col':col})
+
 
 def goals(request):
     return render(request, 'goals.html',)
 
-def raw_data(request):
-    return render(request, 'raw_data.html',)
+
+def raw_data(request, tname):
+    theaders = []
+    table = []
+    with connection.cursor() as cursor:
+        cursor.execute("PRAGMA table_info("+tname+")")
+        rows = cursor.fetchall()
+        theaders = [r[1] for r in rows]
+        cursor.execute('''
+            SELECT * FROM '''+tname
+        )
+        rows = cursor.fetchall()
+        table = [r for r in rows]
+    return render(request, 'raw_data.html', {'table':table, 'tname':tname, 'theaders':theaders})

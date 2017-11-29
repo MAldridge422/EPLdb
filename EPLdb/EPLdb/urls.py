@@ -7,7 +7,8 @@ urlpatterns = [
     url(r'^positions$', fe_views.positions, name='positions'),
     url(r'^positions/(?P<pos>\w+)$', fe_views.positions, name='positions'),
     url(r'^bookings$', fe_views.bookings, name='bookings'),
+    url(r'^bookings/(?P<col>\w+)$', fe_views.bookings, name='bookings'),
     url(r'^goals$', fe_views.goals, name='goals'),
-    url(r'^raw_data$', fe_views.raw_data, name='raw_data'),
+    url(r'^raw_data/(?P<tname>\w+)$', fe_views.raw_data, name='raw_data'),
     url(r'^$', fe_views.index, name='index'),
 ]

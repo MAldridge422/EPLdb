@@ -1180,8 +1180,8 @@ def grounds():
           `name` varchar(64) DEFAULT NULL,
           `city` varchar(64) DEFAULT NULL,
           `capacity` int(11) DEFAULT NULL,
-          `pitch_length` int(11) DEFAULT NULL,
           `pitch_width` int(11) DEFAULT NULL,
+          `pitch_length` int(11) DEFAULT NULL,
           PRIMARY KEY (`grounds_id`),
           CONSTRAINT `owned by` FOREIGN KEY (`team_id`) REFERENCES `Teams` (`team_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
         )
@@ -1212,7 +1212,7 @@ def grounds():
     ]
     for g in grounds_data:
         cur.execute('''
-            INSERT INTO Grounds (grounds_id, team_id, name, city, capacity, pitch_length, pitch_width)
+            INSERT INTO Grounds (grounds_id, team_id, name, city, capacity, pitch_width, pitch_length)
             VALUES
             (?, ?, ?, ?, ?, ?, ?)''',
             tuple(g)
@@ -1271,9 +1271,9 @@ def awards():
     cur.execute('''
         CREATE TABLE `Awards` (
           `month` varchar(32) NOT NULL,
-          `player_id` int(11) DEFAULT NULL,
-          `goal_id` int(11) DEFAULT NULL,
           `manager_id` int(11) DEFAULT NULL,
+          `goal_id` int(11) DEFAULT NULL,
+          `player_id` int(11) DEFAULT NULL,
           PRIMARY KEY (`month`),
           CONSTRAINT `GotM` FOREIGN KEY (`goal_id`) REFERENCES `Goals` (`goal_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
           CONSTRAINT `MotM` FOREIGN KEY (`manager_id`) REFERENCES `Managers` (`manager_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -1283,13 +1283,13 @@ def awards():
     conn.commit()
     #This data is hard coded in each month
     awards_data = [
-        ['August',8,230,34],
-	    ['September',11,394,34],
-	    ['October',11,255,34],
+        ['August',8,230,20],
+	    ['September',11,394,324],
+	    ['October',11,255,157],
     ]
     for a in awards_data:
         cur.execute('''
-            INSERT INTO Awards (month, player_id, goal_id, manager_id)
+            INSERT INTO Awards (month, manager_id, goal_id, player_id)
             VALUES
             (?, ?, ?, ?)''',
             tuple(a)

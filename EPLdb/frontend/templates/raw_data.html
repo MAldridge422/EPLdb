@@ -1,10 +1,46 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% block title %}EPLdb - Raw Data{% endblock %}
+{% block title %}EPLdb - Positions{% endblock %}
   <div class="content-wrapper">
     {% block content %}
     <div class="container-fluid">
-    raw data
+      {% if table %}
+      <div class="card" style="margin: 30px;">
+        <div class="card-header">
+          <i class="fa fa-table"></i> {{ tname }} </div>
+        <div class="card-body">
+          <div>
+            <table class="table table-bordered" id="dataTableRaw" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                {% for h in theaders %}
+                  <th>{{h}}</th>
+                {% endfor %}
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                {% for h in theaders %}
+                  <th>{{h}}</th>
+                {% endfor %}
+                </tr>
+              </tfoot>
+              <tbody>
+              {% for r in table %}
+                <tr>
+                {% for d in r %}
+                  <td>{{d}}</td>
+                {% endfor %}
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <h2>That table does not exist</h2>
+      {% endif %}
     </div>
     {% endblock %}

@@ -5,6 +5,15 @@ Made in [Django](https://www.djangoproject.com/)
 
 Uses the SB Admin template by [Start Bootstrap](https://startbootstrap.com/template-overviews/sb-admin/)
 
+
+## Development
+You can run the site with ```python manage.py runserver``` ([manage.py](EPLdb/manage.py))
+
+Make sure you create a secret.py file in [EPLdb/](EPLdb/) that defines SECRET_KEY for [settings.py](EPLdb/EPLdb/settings.py) 
+
+In [settings.py](EPLdb/EPLdb/settings.py), set DEBUG = TRUE
+
+
 ## Site Structure
 * League Standings
 

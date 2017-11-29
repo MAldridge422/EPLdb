@@ -7,16 +7,20 @@ Uses the SB Admin template by [Start Bootstrap](https://startbootstrap.com/templ
 
 ## Site Structure
 * League Standings
-...Season's table
+
+  Season's table
 * Teams
-...A single page, with tabs for each team
+
+  A single page, with tabs for each team
 * Positions
-...A single page, with tabs for each position
+
+  A single page, with tabs for each position
 * Bookings
-...A single page, with two tabs (red, yellow)
+
+  A single page, with two tabs (red, yellow)
 * Goals
-...A single page with:
-...  Top Goal scorers
-...  Bar graph of goal scorers
+
+  A single page with top goal scorers and a bar graph of goal scorers
 * Raw Data
-...A dropdown with tabs for each table(each has pagination and sortable)
+
+  A dropdown with tabs for each table(each has pagination and sortable)

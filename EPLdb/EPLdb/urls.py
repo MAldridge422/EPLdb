@@ -3,6 +3,7 @@ from django.contrib import admin
 from frontend import views as fe_views
 
 urlpatterns = [
+    url(r'^teams/(?P<team>\w+)$', fe_views.teams, name='teams'),
     url(r'^teams$', fe_views.teams, name='teams'),
     url(r'^positions$', fe_views.positions, name='positions'),
     url(r'^positions/(?P<pos>\w+)$', fe_views.positions, name='positions'),

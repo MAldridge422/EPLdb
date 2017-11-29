@@ -69,8 +69,16 @@ def index(request):
     return render(request, 'index.html', {'table': table})
 
 
-def teams(request):
-    return render(request, 'teams.html',)
+def teams(request, team="Manchester United"):
+    with connection.cursor() as cursor:
+        cursor.execute('''SELECT * FROM TEAMS''')
+        rows = cursor.fetchall()
+        all_teams = [r[1] for r in rows]
+        table = None
+        if team not in all_teams:
+            return render(request, 'teams.html', {'table':table, 'team':team})
+        # need to finish the function here
+    return render(request, 'teams.html', {'team':team})
 
 
 def positions(request, pos="Defender"):
@@ -117,7 +125,7 @@ def bookings(request, col='yellow'):
 
 
 def goals(request):
-    return render(request, 'goals.html',)
+    return render(request, 'goals.html')
 
 
 def raw_data(request, tname):

@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^bookings$', fe_views.bookings, name='bookings'),
     url(r'^bookings/(?P<col>\w+)$', fe_views.bookings, name='bookings'),
     url(r'^goals$', fe_views.goals, name='goals'),
+    url(r'^managers$', fe_views.managers, name='managers'),
     url(r'^raw_data/(?P<tname>\w+)$', fe_views.raw_data, name='raw_data'),
     url(r'^$', fe_views.index, name='index'),
 ]

@@ -31,6 +31,7 @@
       <div class="container">
         <div class="text-center">
           <small>By Matt, Tarun, Michael, and Tim</small>
+          <small>Uses SB Admin by StartBoostrap.com</small>
         </div>
       </div>
     </footer>
@@ -69,7 +70,11 @@
     <script src="{% static "js/sb-admin.min.js" %}"></script>
     <!-- Custom scripts for this page-->
     <script src="{% static "js/sb-admin-datatables.min.js" %}"></script>
+    
     <script src="{% static "js/sb-admin-charts.min.js" %}"></script>
+   
+    {% block chartinfo %}
+    {% endblock %}
   </div>
 </body>
 </html>

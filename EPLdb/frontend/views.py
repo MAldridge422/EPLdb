@@ -136,8 +136,47 @@ def bookings(request, col='yellow'):
 
 
 def goals(request):
-    return render(request, 'goals.html')
+    with connection.cursor() as cursor:
+        cursor.execute('''
+        SELECT Players.name, count(Players.name) as scored
+        FROM Players
+        INNER JOIN Goals
+        ON Players.player_id=Goals.player_id
+        GROUP BY Players.name
+        ORDER BY scored DESC
+        ''')
+        rows = cursor.fetchall()
+        table = [r for r in rows]
+        cursor.execute('''
+        SELECT Players.name, count(Players.name) as scored
+        FROM Players
+        INNER JOIN Goals
+        ON Players.player_id=Goals.player_id
+        GROUP BY Players.name
+        ORDER BY scored DESC
+        LIMIT 10
+        ''')
+        rows = cursor.fetchall()
+        top = [r for r in rows]
+    return render(request, 'goals.html', {'table':table, 'top':top})
 
+def managers(request):
+    with connection.cursor() as cursor:
+        cursor.execute('''
+        SELECT Managers.name, Teams.full_name
+        FROM Managers
+            LEFT JOIN Teams
+                ON Managers.team_id = Teams.team_id
+        UNION ALL
+        SELECT Managers.name, Teams.full_name
+        FROM Teams
+            LEFT JOIN Managers
+                ON Managers.team_id = Teams.team_id
+        WHERE Managers.team_id IS NULL
+        ''')
+        rows = cursor.fetchall()
+        table = [r for r in rows]
+    return render(request, 'managers.html', {'table':table})
 
 def raw_data(request, tname):
     theaders = []

@@ -1,10 +1,115 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% block title %}EPLdb - Goals{% endblock %}
+{% block title %}EPLdb - Positions{% endblock %}
   <div class="content-wrapper">
     {% block content %}
     <div class="container-fluid">
-    goals
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-bar-chart"></i> Top Goalscorers</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-8 my-auto">
+                <canvas id="myBarChart" width="100" height="50"></canvas>
+              </div>
+              <!--<div class="col-sm-4 text-center my-auto">
+                <div class="h4 mb-0 text-primary">$34,693</div>
+                <div class="small text-muted">YTD Revenue</div>
+                <hr>
+                <div class="h4 mb-0 text-warning">$18,474</div>
+                <div class="small text-muted">YTD Expenses</div>
+                <hr>
+                <div class="h4 mb-0 text-success">$16,219</div>
+                <div class="small text-muted">YTD Margin</div>
+              </div>-->
+            </div>
+          </div>
+      {% if table %}
+      <div class="card" style="margin: 30px;">
+        <div class="card-header">
+          <i class="fa fa-table"></i> All Goalscorers </div>
+        <div class="card-body">
+          <div>
+            <table class="table table-bordered" id="dataTablePositions" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Player</th>
+                  <th>Goals</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>Player</th>
+                  <th>Goals</th>
+                </tr>
+              </tfoot>
+              <tbody>
+              {% for r in table %}
+                <tr>
+                {% for d in r %}
+                  <td>{{d}}</td>
+                {% endfor %}
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <h2>That position does not exist</h2>
+      {% endif %}
     </div>
+    {% endblock %}
+    {% block chartinfo %}
+    <script type="text/javascript">
+      // -- Bar Chart Example
+      var ctx = document.getElementById("myBarChart");
+      var myLineChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+            {% for r in top %}
+            "{{ r.0 }}",
+            {% endfor %}
+            ],
+          datasets: [{
+            label: "Goals",
+            backgroundColor: "rgba(2,117,216,1)",
+            borderColor: "rgba(2,117,216,1)",
+            data: [{% for r in top %}{% if forloop.last%}{{ r.1 }}{% else %}{{r.1}},{% endif %}{% endfor %}],
+          }],
+        },
+        options: {
+          scales: {
+            xAxes: [{
+              time: {
+                unit: 'month'
+              },
+              gridLines: {
+                display: false
+              },
+              ticks: {
+                maxTicksLimit: 6
+              }
+            }],
+            yAxes: [{
+              ticks: {
+                min: 0,
+                max: 15,
+                maxTicksLimit: 5
+              },
+              gridLines: {
+                display: true
+              }
+            }],
+          },
+          legend: {
+            display: false
+          }
+        }
+      });
+
+    </script>
     {% endblock %}

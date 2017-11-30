@@ -13,16 +13,24 @@
               <div class="col-sm-8 my-auto">
                 <canvas id="myBarChart" width="100" height="50"></canvas>
               </div>
-              <!--<div class="col-sm-4 text-center my-auto">
-                <div class="h4 mb-0 text-primary">$34,693</div>
-                <div class="small text-muted">YTD Revenue</div>
+              <div class="col-sm-4 text-center my-auto">
+                {% if top.0.2 == "Liverpool" %}
+                <div class="h4 mb-0 text-danger">{{top.0.1}}</div>
+                {% else %}
+                <div class="h4 mb-0 text-primary">{{top.0.1}}</div>
+                {% endif %}
+                <div class="small text-muted">{{top.0.0}}</div>
                 <hr>
-                <div class="h4 mb-0 text-warning">$18,474</div>
-                <div class="small text-muted">YTD Expenses</div>
+                {% if top.0.2 == "Spurs" %}
+                <div class="h4 mb-0 text-danger">{{top.1.1}}</div>
+                {% else %}
+                <div class="h4 mb-0 text-primary">{{top.1.1}}</div>
+                {% endif %}
+                <div class="small text-muted">{{top.1.0}}</div>
                 <hr>
-                <div class="h4 mb-0 text-success">$16,219</div>
-                <div class="small text-muted">YTD Margin</div>
-              </div>-->
+                <div class="h4 mb-0 text-primary">{{top.2.1}}</div>
+                <div class="small text-muted">{{top.2.0}}</div>
+              </div>
             </div>
           </div>
       {% if table %}
@@ -36,12 +44,14 @@
                 <tr>
                   <th>Player</th>
                   <th>Goals</th>
+                  <th>Teams</th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
                   <th>Player</th>
                   <th>Goals</th>
+                  <th>Teams</th>
                 </tr>
               </tfoot>
               <tbody>

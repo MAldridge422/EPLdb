@@ -138,22 +138,34 @@ def bookings(request, col='yellow'):
 def goals(request):
     with connection.cursor() as cursor:
         cursor.execute('''
-        SELECT Players.name, count(Players.name) as scored
+        SELECT B.pname, B.scored, Teams.full_name
+        FROM Teams
+        INNER JOIN
+        (
+        SELECT Players.name as pname, Players.team_id as teamid, count(Players.name) as scored
         FROM Players
         INNER JOIN Goals
         ON Players.player_id=Goals.player_id
         GROUP BY Players.name
-        ORDER BY scored DESC
+        ) B
+        ON Teams.team_id = B.teamid
+        ORDER BY B.scored DESC
         ''')
         rows = cursor.fetchall()
         table = [r for r in rows]
         cursor.execute('''
-        SELECT Players.name, count(Players.name) as scored
+        SELECT B.pname, B.scored, Teams.full_name
+        FROM Teams
+        INNER JOIN
+        (
+        SELECT Players.name as pname, Players.team_id as teamid, count(Players.name) as scored
         FROM Players
         INNER JOIN Goals
         ON Players.player_id=Goals.player_id
         GROUP BY Players.name
-        ORDER BY scored DESC
+        ) B
+        ON Teams.team_id = B.teamid
+        ORDER BY B.scored DESC
         LIMIT 10
         ''')
         rows = cursor.fetchall()
